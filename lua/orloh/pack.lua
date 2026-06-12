@@ -1,9 +1,9 @@
 -- 1. Create a dictionary of plugins and their build commands
--- local build_hooks = {
---     ['telescope-fzf-native.nvim'] = { 'make' },
---     -- Example: ['markdown-preview.nvim'] = { 'npm', 'install' },
---     -- Example: ['telescope-frecency.nvim'] = { 'cargo', 'build', '--release' }
--- }
+local build_hooks = {
+    ['telescope-fzf-native.nvim'] = { 'make' },
+    -- Example: ['markdown-preview.nvim'] = { 'npm', 'install' },
+    -- Example: ['telescope-frecency.nvim'] = { 'cargo', 'build', '--release' }
+}
 
 -- 2. The Generalized Autocommand
 -- vim.api.nvim_create_autocmd('PackChanged', {
