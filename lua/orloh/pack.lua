@@ -4,5 +4,11 @@ vim.pack.add({
         name = "rose-pine",
     },
     "https://github.com/nvim-mini/mini.nvim",
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter",
+        branch = "main",
+    },
+    "https://github.com/otavioschwanck/arrow.nvim",
+    "https://github.com/tpope/vim-fugitive",
 })
 

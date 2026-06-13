@@ -4,5 +4,8 @@ require("orloh.commands")
 require("orloh.pack")
 require("orloh.colors")
 require("orloh.pick")
+require("orloh.arrow")
+require("orloh.fugitive")
+require("orloh.treesitter")
 
 print("hello from orloh")
