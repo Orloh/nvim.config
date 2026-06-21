@@ -1,7 +1,7 @@
 local status_ok, rose_pine = pcall(require, "rose-pine")
 
 if not status_ok then
-    vim.notify("rose-pine failed to load!\nError: " .. result, vim.log.levels.WARN)
+    vim.notify("rose-pine is not installed yet!", vim.log.levels.WARN)
     return
 end
 
