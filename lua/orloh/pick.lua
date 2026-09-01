@@ -1,12 +1,12 @@
 local mini_ok, MiniPick = pcall(require, "mini.pick")
 if not mini_ok then
-    vim.notify("mini.pick is nota installed yet!", vim.log.levels.WARN)
+    vim.notify("mini.pick is not installed yet!", vim.log.levels.WARN)
     return
 end
 
 local extra_ok, MiniExtra = pcall(require, "mini.extra")
 if not extra_ok then
-    vim.notify("mini.extra is nota installed yet!", vim.log.levels.WARN)
+    vim.notify("mini.extra is not installed yet!", vim.log.levels.WARN)
     return
 end
 

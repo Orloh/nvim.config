@@ -1,3 +1,6 @@
+local MiniSnippets = require("mini.snippets")
+MiniSnippets.setup()
+
 local MiniCompletion = require("mini.completion")
 
 MiniCompletion.setup({

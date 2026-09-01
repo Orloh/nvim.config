@@ -7,7 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 
-vim.opt.wrap = true 
+vim.opt.wrap = true
 vim.opt.smartindent = true
 vim.opt.inccommand = "split"
 
@@ -25,7 +25,7 @@ vim.opt.laststatus = 3
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath("data").."/undodir"
+vim.opt.undodir = vim.fs.joinpath(vim.fn.stdpath("data"), "undodir")
 vim.opt.undofile = true
 
 vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
@@ -34,11 +34,11 @@ vim.opt.shortmess:append("c")
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.isfname:append("@-@")
 
-vim.opt.colorcolumn = "0"
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("orloh-yank-highlight", { clear = true }),
     desc = "Highlight when yanking (copying) text",
     callback = function()
         vim.hl.on_yank()

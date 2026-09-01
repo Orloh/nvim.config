@@ -1,10 +1,10 @@
 vim.g.mapleader = " "
 
 -- Configures spacebar as leader key
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
 
 -- replaces selected text WITHOUT losing what you yanked
-vim.keymap.set("x", "p", [["_dP]], { desc = "Paset over selection without losing yanked text"})
+vim.keymap.set("x", "p", [["_dP]], { desc = "Paste over selection without losing yanked text"})
 
 -- Delete text without saving it to any register
 vim.keymap.set({ "n", "v" }, "<leader>d", [["-d]], { desc = "Delete without yanking"})

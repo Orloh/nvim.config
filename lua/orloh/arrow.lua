@@ -7,7 +7,7 @@ end
 
 arrow.setup({
     show_icons = true,
-    alwasy_show_path = false,
+    always_show_path = false,
     leader_key = "<C-e>",
 })
 
@@ -21,6 +21,6 @@ vim.keymap.set("n", "<C-k>", function() persist.go_to(2) end, { desc = "Arrow Fi
 vim.keymap.set("n", "<C-l>", function() persist.go_to(3) end, { desc = "Arrow File 3" })
 vim.keymap.set("n", "<C-ñ>", function() persist.go_to(4) end, { desc = "Arrow File 4" })
 
-vim.keymap.set("n", "<C-S-P>", persist.previous, { desc = "Arrow Prev File" })
-vim.keymap.set("n", "<C-S-N>", persist.next, { desc = "Arrow Next File" })
+vim.keymap.set("n", "]a", persist.next, { desc = "Arrow Next File" })
+vim.keymap.set("n", "[a", persist.previous, { desc = "Arrow Prev File" })
 

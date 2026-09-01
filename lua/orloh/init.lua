@@ -10,5 +10,3 @@ require("orloh.fugitive")
 require("orloh.treesitter")
 require("orloh.completions")
 require("orloh.lsp")
-
-print("hello from orloh")
