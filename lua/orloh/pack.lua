@@ -9,6 +9,7 @@ vim.pack.add({
         branch = "main",
     },
     "https://github.com/otavioschwanck/arrow.nvim",
+    "https://github.com/OXY2DEV/markview.nvim",
     "https://github.com/tpope/vim-fugitive",
     { src = "https://github.com/neovim/nvim-lspconfig" },
     "https://github.com/mason-org/mason.nvim",

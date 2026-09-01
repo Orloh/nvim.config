@@ -9,6 +9,7 @@ local ensure_installed = {
     "python",
     "bash",
     "markdown",
+    "markdown_inline",
     "json",
     "yaml",
     "toml",
@@ -20,22 +21,12 @@ local ensure_installed = {
 
 treesitter.install(ensure_installed)
 
+-- vim.treesitter.start() resolves the parser from 'filetype' and enables
+-- highlighting; pcall guards filetypes without an installed parser.
 vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("orloh-treesitter-start", { clear = true }),
     pattern = "*",
     callback = function(args)
-        local buf = args.buf
-        local ft = vim.bo[buf].filetype
-
-        local lang = vim.treesitter.language.get_lang(ft)
-        if not lang then
-            return
-        end
-
-        local ok_add = pcall(vim.treesitter.language.add, lang)
-        if not ok_add then
-            return
-        end
-
-        pcall(vim.treesitter.start, buf, lang)
+        pcall(vim.treesitter.start, args.buf)
     end,
 })
