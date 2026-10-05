@@ -38,6 +38,16 @@ vim.lsp.config("clangd", {
         "--completion-style=detailed",
         "--header-insertion=iwyu",
     },
+    handlers = {
+        ["textDocument/inlayHint"] = function(err, result, ctx)
+            if type(result) == "table" then
+                result = vim.tbl_filter(function(hint)
+                    return hint.kind ~= 2
+                end, result)
+            end
+            return vim.lsp.inlay_hint.on_inlayhint(err, result, ctx)
+        end,
+    },
 })
 
 vim.lsp.enable({
