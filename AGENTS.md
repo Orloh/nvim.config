@@ -27,7 +27,7 @@ deliberately uses new-era APIs — legacy patterns common in training data are w
 
 - `init.lua` → `lua/orloh/init.lua` requires one module per concern in a fixed order:
   options → remap → commands → pack → colors → notify → pick → arrow → fugitive →
-  treesitter → markview → completions → lsp. `pack.lua` must precede modules that
+  treesitter → markview → completions → lsp → norm. `pack.lua` must precede modules that
   `require` plugins; `remap.lua` sets `vim.g.mapleader` (`<Space>`) before plugin
   keymaps. A new module = new file under `lua/orloh/` + a require in that list.
 - Plugin keymaps live in the module that owns the plugin (not remap.lua), always with
@@ -55,6 +55,15 @@ deliberately uses new-era APIs — legacy patterns common in training data are w
   and NO inlayHint capability, verified against 1.1.410; Pylance/basedpyright carry
   those), ruff (Python lint + format), lua_ls (inlay hints on), bashls.
 - `<leader>f` (`vim.lsp.buf.format`) formats via whichever attached server formats.
+- 42 School norm (`norm.lua`, only inside `~/42Madrid` paths — edit `M.roots`):
+  `:Stdheader` inserts/refreshes the header, and `BufWritePre` refreshes the `Updated:`
+  line (plus the filename line) on every write. `:Norminette` / `<leader>xn` runs
+  `norminette -f json` into diagnostics, and C/H buffers get a buffer-local `<leader>f`
+  that pipes through `c_formatter_42` (pipx-installed in `~/.local/bin`), overriding the
+  LSP formatter. Those buffers also force `noexpandtab`/`tabstop=4`/`shiftwidth=4`/
+  `softtabstop=0` so indentation is real tabs (the global `options.lua` uses spaces).
+  `norminette` parses JSON from stdout after a locale line, so locate the first `{`
+  before `vim.json.decode`.
 - Markdown renders in-buffer via markview.nvim (hybrid mode; `<leader>m` toggles
   per-buffer; markdown buffers force `wrap=false`). It needs the `markdown` +
   `markdown_inline` treesitter parsers and must not be lazy-loaded. Its `state` API
