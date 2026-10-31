@@ -194,16 +194,19 @@ vim.api.nvim_create_user_command("Norminette", M.check, { desc = "Run norminette
 
 vim.api.nvim_create_autocmd("FileType", {
     group = group,
-    pattern = { "c", "h" },
+    pattern = { "c", "cpp" },
     desc = "42 norm buffer-local maps inside the 42Madrid workspace",
     callback = function(args)
+        -- Neovim 0.12 classifies .h as 'cpp', so match cpp too but only act on
+        -- real C sources/headers (c_formatter_42 and norminette are C-only).
+        local name = vim.api.nvim_buf_get_name(args.buf)
+        local ext = vim.fn.fnamemodify(name, ":e")
+        if ext ~= "c" and ext ~= "h" then
+            return
+        end
         if not in_project(args.buf) then
             return
         end
-        vim.bo[args.buf].expandtab = false
-        vim.bo[args.buf].tabstop = 4
-        vim.bo[args.buf].shiftwidth = 4
-        vim.bo[args.buf].softtabstop = 0
         vim.keymap.set("n", "<leader>f", M.format, { buffer = args.buf, desc = "Format with c_formatter_42" })
         vim.keymap.set("n", "<leader>xn", M.check, { buffer = args.buf, desc = "Run norminette" })
         vim.keymap.set("n", "<leader>xh", M.stdheader, { buffer = args.buf, desc = "Insert/refresh 42 header" })
