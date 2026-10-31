@@ -60,8 +60,10 @@ deliberately uses new-era APIs — legacy patterns common in training data are w
   line (plus the filename line) on every write. `:Norminette` / `<leader>xn` runs
   `norminette -f json` into diagnostics, and C/H buffers get a buffer-local `<leader>f`
   that pipes through `c_formatter_42` (pipx-installed in `~/.local/bin`), overriding the
-  LSP formatter. Those buffers also force `noexpandtab`/`tabstop=4`/`shiftwidth=4`/
-  `softtabstop=0` so indentation is real tabs (the global `options.lua` uses spaces).
+  LSP formatter. Indentation is real tabs everywhere (`options.lua` sets
+  `noexpandtab`/`softtabstop=0`).
+  Neovim 0.12 classifies `.h` as filetype `cpp`, so the `FileType` autocmd matches
+  `{ c, cpp }` and a `.c`/`.h` extension guard keeps real C++ files untouched.
   `norminette` parses JSON from stdout after a locale line, so locate the first `{`
   before `vim.json.decode`.
 - Markdown renders in-buffer via markview.nvim (hybrid mode; `<leader>m` toggles
