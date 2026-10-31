@@ -2,9 +2,9 @@ vim.g.netrw_banner = 0
 
 -- Tab and Indent configuration
 vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+vim.opt.softtabstop = 0
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.scrolloff = 8
 
 vim.opt.wrap = true
@@ -36,6 +36,17 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+
+-- Force real tabs in every buffer: filetype plugins (e.g. python) re-enable
+-- expandtab, so re-assert the preference after they run.
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("orloh-tabs", { clear = true }),
+    desc = "Force tabs over spaces in every buffer",
+    callback = function()
+        vim.opt_local.expandtab = false
+        vim.opt_local.softtabstop = 0
+    end,
+})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("orloh-yank-highlight", { clear = true }),
